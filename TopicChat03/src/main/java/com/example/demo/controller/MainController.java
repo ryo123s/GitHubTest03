@@ -30,8 +30,8 @@ public class MainController {
 		return "/signup";
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/index")
 	public String index() {
-		return "index";
+		return "/index";
 	}
 }
