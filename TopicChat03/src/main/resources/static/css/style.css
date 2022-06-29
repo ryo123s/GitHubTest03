@@ -1,0 +1,189 @@
+@charset "UTF-8";
+body{
+	margin: 0px;
+	background-color: darkgray;
+}
+
+h2{
+	font-size: 20px;
+}
+
+p, div{
+	margin: 0pc;
+	padding: 0px;
+}
+
+.btn-border {
+  border: 2px solid #000;
+  border-radius: 0;
+  background: #fff;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  padding: 10px 15px;
+}
+
+.btn-border:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 5px;
+  height: 100%;
+
+  content: '';
+  -webkit-transition: all .3s;
+  transition: all .3s;
+
+  background: #000;
+}
+
+.btn-border:hover {
+  color: #fff;
+  background: #000;
+}
+
+.btn-border:hover:before {
+  background: #fff;
+}
+
+.add-text{
+    font-size: 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box; /*横幅の解釈をpadding, borderまでとする*/
+}
+
+.text_underline{
+    position: relative; /*.text_underline::beforeの親要素*/
+    border-top: 1px solid #c2c2c2; /*text3の下線*/
+}
+
+/*共通のstyle*/
+.text_underline::before,
+.text_underline::after{
+    position: absolute; 
+    bottom: 0px; /*中央配置*/
+    width: 0px; /*アニメーションで0pxから50%に*/
+    height: 1px; /*高さ*/
+    content: '';
+    background-color: #3be5ae; /*アニメーションの色*/
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+/*中央から右へのアニメーション*/
+.text_underline::before{
+    left: 50%; /*中央配置*/
+}
+
+/*中央から左へのアニメーション*/
+.text_underline::after{ 
+    right: 50%; /*中央配置*/
+}
+
+.add-text:focus + .text_underline::before,
+.add-text:focus + .text_underline::after{
+    width: 50%;
+}
+
+.main-container{
+	margin-top: 15px;
+}
+
+.main-container .center-content{
+	width: 80%;
+	margin: 0 auto;
+	background-color: white;
+}
+
+.main-container .center-content .top-content .top-bar{
+	background-color: white;
+	display: flex;
+	height: 70px;
+	align-items: center;
+	border-bottom: 1px solid black;
+}
+
+.main-container .center-content .top-content .top-bar .left-contents{
+	display:flex;
+	width: 40%;
+	padding-left: 1%;
+}
+
+.main-container .center-content .top-content .top-bar .left-contents form{
+	display: flex;
+	align-items: center;
+}
+
+.main-container .center-content .top-content .top-bar .left-contents form input{
+	border: none;
+	background: transparent;
+}
+
+.main-container .center-content .top-content .top-bar .left-contents .page-title{
+	padding-left: 10%;
+}
+
+.main-container .center-content .top-content .top-bar .right-contents{
+	display: flex;
+	justify-content: flex-end;
+	width: 60%;
+	padding-right: 10%;
+}
+
+.main-container .center-content .top-content .top-bar .right-contents form{
+	margin-left: 3%;
+}
+
+.main-container .center-content .main-content .group{
+	padding: 12px 8%;
+	border-bottom: 0.5px solid black;
+}
+
+.main-container .center-content .main-content .group .groupname{
+	font-size: 25px;
+}
+
+.main-container .center-content .main-content .group .group_id{
+	color: gray;
+	font-size: 15px;
+}
+
+.main-container .center-content .main-content .group .comment{
+	margin-top: 8px;
+	font-size: 18px;
+}
+
+.main-container .center-content .main-content .group .upddatetime{
+	margin-top: 8px;
+	font-size: 15px;
+	text-align: center;
+}
+
+.main-container .center-content .main-content .add-form{
+	margin: 10px 10%;
+	padding: 30px 0 70px;
+	height: 100%;
+}
+
+.main-container .center-content .main-content .add-form>div{
+	margin: 60px 0;
+}
+
+.main-container .center-content .main-content .add-form div label{
+	display: block;
+	font-size: 20px;
+	/*margin-bottom: 8px;*/
+}
+
+.main-container .center-content .main-content .add-form div label input{
+	display: block;
+	width: 60%;
+}
+
+.main-content .move-login, .main-content .move-signup{
+	margin: 0 10%;
+	padding-bottom: 80px;
+}

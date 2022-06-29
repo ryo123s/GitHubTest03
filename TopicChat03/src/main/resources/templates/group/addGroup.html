@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/header.css}" rel="stylesheet" type="text/css">
+<script type="text/javascript" th:src="@{/js/addGroup.js}"></script>
+</head>
+<body>
+<!-- 新規グループを追加するための画面 -->
+<div class="wrapper">
+	<div class="header-container">
+		<div class="top-bar">
+			<div class="left-contents">
+				<h1>Topic Chat</h1>
+			</div>
+			<div class="right-contents">
+				<div class="">
+					<form th:action="@{/group/group}" method="get">
+						<button type="submit">HOME</button>
+					</form>
+				</div>
+				<div class="">
+					<form th:action="@{/contact/contact}" method="get">
+						<button type="submit">CONTACT</button>
+					</form>
+				</div>
+				<div class="">
+					<form role="form" id="logout" th:action="@{/logout}" method="post">
+						<button type="submit">SIGN OUT</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-container">
+		<div class="center-content">
+			<div class="top-content">
+				<div class="top-bar">
+					<div class="left-contents">
+						<form th:action="@{/group/group}" method="get">
+							<input type="submit" value="＜">
+						</form>
+						<div class="page-title">
+							<h2>add new Group</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main-content">
+				<form th:action="@{/addGroup}" method="post" th:object="${groupForm}">
+					<input type="text" name="user_id" th:value="${user_id}" style="display:none;">
+					<div class="add-form">
+						<div>
+							<label>Group ID</label>
+							<input type="text" name="group_id" class="add-text" placeholder="グループIDを入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<label>Group Name</label>
+							<input type="text" name="groupname" class="add-text" placeholder="グループ名を入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<label>Comment</label>
+							<input type="text" name="comment" class="add-text" placeholder="コメントを入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<input type="submit" value="Add" class="btn-border">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="main-content">
+				<form th:object="${groupForm}">
+					<input type="text" name="user_id" th:value="${user_id}" style="display:none;" th:field="*{user_id}">
+					<div class="add-form">
+						<div>
+							<label>Group ID</label>
+							<input type="text" name="group_id" class="add-text" placeholder="グループIDを入力する" th:field="*{group_id}">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<label>Group Name</label>
+							<input type="text" name="groupname" class="add-text" placeholder="グループ名を入力する" th:field="*{groupname}">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<label>Comment</label>
+							<input type="text" name="comment" class="add-text" placeholder="コメントを入力する" th:field="*{comment}">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<input type="submit" value="Add" class="btn-border" onclick="checkInputAndSubmit('/addGroup');">
+						</div>
+					</div>
+				</form>
+			</div>
+<form th:object="${groupForm}">
+	<input type="text" name="group_id">
+	<input type="submit" value="確認" onclick="test('/group/group');">
+</form>
+</body>
+</html>

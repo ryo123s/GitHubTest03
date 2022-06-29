@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/header.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/message.css}" rel="stylesheet" type="text/css">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- チャットのメッセージを表示するための画面 -->
+<div class="wrapper">
+	<div class="header-container">
+		<div class="top-bar">
+			<div class="left-contents">
+				<h1>Topic Chat</h1>
+			</div>
+			<div class="right-contents">
+				<div class="">
+					<form th:action="@{/group/group}" method="get">
+						<button type="submit">HOME</button>
+					</form>
+				</div>
+				<div class="">
+					<form th:action="@{/contact/contact}" method="get">
+						<button type="submit">CONTACT</button>
+					</form>
+				</div>
+				<div class="">
+					<form role="form" id="logout" th:action="@{/logout}" method="post">
+						<button type="submit">SIGN OUT</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-container">
+		<div class="center-content">
+			<div class="top-content">
+				<div class="top-bar">
+					<div class="left-contents">
+						<form th:action="@{/chat}" method="post" th:object="${groupForm}">
+							<input type="text" name="group_id" th:value="${chatInfo.group_id}" style="display:none;">
+							<input type="text" name="groupname" th:value="${chatInfo.groupname}" style="display:none;">
+							<input type="text" name="user_id" th:value="${chatInfo.user_id}" style="display:none;">
+							<input type="submit" value="＜">
+						</form>
+						<div class="page-title">
+							<h2 th:text="${chatInfo.chatname}"></h2>
+						</div>
+					</div>
+					<div class="right-contents">
+						<form th:action="@{/chat/chatMember}" method="get" th:object="${chatForm}">
+							<input type="text" name="chat_id" th:value="${chatInfo.chat_id}" style="display:none;">
+							<input type="text" name="chatname" th:value="${chatInfo.chatname}" style="display:none;">
+							<input type="text" name="group_id" th:value="${chatInfo.group_id}" style="display:none;">
+							<input type="text" name="groupname" th:value="${chatInfo.groupname}" style="display:none;">
+							<input type="text" name="user_id" th:value="${chatInfo.user_id}" style="display:none;">
+							<input type="submit" value="Chat Member"  class="btn-border">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="main-content">
+				<div th:each="list:${messageList}">
+					<th:block th:if="${list.user_id != chatInfo.user_id}">
+						<!-- 吹き出し（左）の始まり -->
+						<div class="sb-box">
+						    <div class="sb-side sb-side-left">
+						    	<span th:text="${list.username}"></span>
+						        <div class="sb-txt sb-txt-left" th:text="${list.text}"></div><!-- /.sb-txt sb-txt-left -->
+						        <span th:text="${list.upddatetime}"></span>
+						    </div><!-- /.sb-side sb-side-left -->
+						</div><!-- /.sb-box -->
+						<!-- 吹き出し（左）の終わり -->
+					</th:block>
+					<th:block th:if="${list.user_id == chatInfo.user_id}">
+						<!-- 吹き出し（右）の始まり -->
+						<div class="sb-box">
+						    <div class="sb-side sb-side-right">
+						    	<p th:text="${list.username}"></p>
+						        <div class="sb-txt sb-txt-right" th:text="${list.text}"></div><!-- /.sb-txt sb-txt-right -->
+						        <span th:text="${list.upddatetime}"></span>
+						    </div><!-- /.sb-side sb-side-right -->
+						</div><!-- /.sb-box -->
+						<!-- 吹き出し（右）の終わり -->
+					</th:block>
+				</div>
+				<div class="message-wrapper">
+					<div class="message-form">
+						<form th:action="@{/addMessage}" method="post" th:object="${messageForm}" class="message_container">
+							<input type="text" name="chat_id" th:value="${chatInfo.chat_id}" style="display:none;">
+							<input type="text" name="chatname" th:value="${chatInfo.chatname}" style="display:none;">
+							<input type="text" name="group_id" th:value="${chatInfo.group_id}" style="display:none;">
+							<input type="text" name="groupname" th:value="${chatInfo.groupname}" style="display:none;">
+							<input type="text" name="user_id" th:value="${chatInfo.user_id}" style="display:none;">
+							<input type="text" name="text" placeholder="メッセージを入力"></textarea>
+		  					<input type="submit" value="&#xf002">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

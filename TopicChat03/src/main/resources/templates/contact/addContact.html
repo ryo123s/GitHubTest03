@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/header.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/contact.css}" rel="stylesheet" type="text/css">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- 新しくコンタクト登録するための画面 -->
+<div class="wrapper">
+	<div class="header-container">
+		<div class="top-bar">
+			<div class="left-contents">
+				<h1>Topic Chat</h1>
+			</div>
+			<div class="right-contents">
+				<div class="">
+					<form th:action="@{/group/group}" method="get">
+						<button type="submit">HOME</button>
+					</form>
+				</div>
+				<div class="">
+					<form th:action="@{/contact/contact}" method="get">
+						<button type="submit">CONTACT</button>
+					</form>
+				</div>
+				<div class="">
+					<form role="form" id="logout" th:action="@{/logout}" method="post">
+						<button type="submit">SIGN OUT</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-container">
+		<div class="center-content">
+			<div class="top-content">
+				<div class="top-bar">
+					<div class="left-contents">
+						<form th:action="@{/contact/contact}" method="get">
+							<input type="submit" value="＜">
+						</form>
+						<div class="page-title">
+							<h2>add Contact</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main-content">
+				
+				<div class="search-wrapper">
+					<div class="search-form">
+						<form th:action="@{/searchUser}" method="post" th:object="${contactForm}" class="search_container">
+							<input type="text" name="user_id" th:value="${contactForm.user_id}" style="display:none;">
+							<input type="text" name="contact_user_id" placeholder="　ユーザーIDを検索">
+	  						<input type="submit" value="&#xf002">
+						</form>
+					</div>
+					<th:block th:if="${addUserInfo!=null}">
+					<form th:action="@{/addContact}" method="post" th:object="${contactForm}">
+						<div class="user-info">
+							<div class="username">
+								<label>User Name：</label>
+								<span th:text="${addUserInfo.username}"></span>
+							</div>
+							<div class="user_id">
+								<label>User ID：</label>
+								<span th:text="${addUserInfo.user_id}"></span>
+							</div>
+							<div class="comment">
+								<label>Comment：</label>
+								<span th:text="${addUserInfo.comment}"></span>
+							</div>
+							<input type="text" name="user_id" th:value="${contactForm.user_id}" style="display:none;">
+							<input type="text" name="contact_user_id" th:value="${addUserInfo.user_id}" style="display:none;">
+							<input type="submit" value="add Contact" class="btn-border">
+						</div>
+					</form>
+				</th:block>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

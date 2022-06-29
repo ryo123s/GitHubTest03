@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.main-container .center-content .main-content .user-list{
+	padding: 12px 0;
+	border-bottom: 0.5px solid black;
+	display: flex;
+}
+
+.main-container .center-content .main-content .user-list .left-content{
+	margin-left: 8%;
+	width: 55%;
+}
+
+.main-container .center-content .main-content .user-list .left-content .userid-name{
+	display: flex;
+	align-items: center;
+}
+
+.main-container .center-content .main-content .user-list .left-content .userid-name .username{
+	font-size: 22px;
+}
+
+.main-container .center-content .main-content .user-list .left-content .userid-name .user_id{
+	color: gray;
+	font-size: 15px;
+	margin-left: 3%;
+}
+
+.main-container .center-content .main-content .user-list .left-content .comment{
+	margin: 10px 0 10px;
+	font-size: 15px;
+}
+

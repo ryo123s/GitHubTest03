@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/header.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- 新規登録画面 -->
+<div class="wrapper">
+	<div class="header-container">
+		<div class="top-bar">
+			<div class="left-contents">
+				<h1>Topic Chat</h1>
+			</div>
+			<div class="right-contents">
+				<div class="">
+					<form th:action="@{/}" method="get">
+						<button type="submit">HOME</button>
+					</form>
+				</div>
+				<div class="">
+					<form th:action="@{/contact/contact}" method="get">
+						<button type="submit">CONTACT</button>
+					</form>
+				</div>
+				<div class="">
+					<form th:action="@{/}" method="get">
+						<button type="submit">MYPAGE</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-container">
+		<div class="center-content">
+			<div class="top-content">
+				<div class="top-bar">
+					<div class="left-contents">
+						<div class="page-title">
+							<h2>Sign Up</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main-content">
+				<form method="post" th:action="@{/signup}" th:object="${signupForm}">
+					<div class="add-form">
+						<div>
+							<label for="user_id">User ID</label>
+							<input type="text" id="user_id" name="user_id" class="add-text" placeholder="ユーザーIDを入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<label for="username">User Name</label>
+							<input type="text" id="username" name="username" class="add-text" placeholder="ユーザー名を入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<label for="password">Password</label>
+							<input type="password" id="password" name="password" class="add-text" placeholder="コメントを入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<label for="comment">Comment</label>
+							<input type="text" id="comment" name="comment" class="add-text" placeholder="コメントを入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<input type="submit" value="Sign up" class="btn-border">
+						</div>
+					</div>
+				</form>
+				<div class="move-login">
+					<form method="get" th:action="@{/login}">
+						<input type="submit" value="Login" class="btn-border">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

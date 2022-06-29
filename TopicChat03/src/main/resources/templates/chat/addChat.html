@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/header.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- 新しいチャットを追加するための画面 -->
+<div class="wrapper">
+	<div class="header-container">
+		<div class="top-bar">
+			<div class="left-contents">
+				<h1>Topic Chat</h1>
+			</div>
+			<div class="right-contents">
+				<div class="">
+					<form th:action="@{/group/group}" method="get">
+						<button type="submit">HOME</button>
+					</form>
+				</div>
+				<div class="">
+					<form th:action="@{/contact/contact}" method="get">
+						<button type="submit">CONTACT</button>
+					</form>
+				</div>
+				<div class="">
+					<form role="form" id="logout" th:action="@{/logout}" method="post">
+						<button type="submit">SIGN OUT</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-container">
+		<div class="center-content">
+			<div class="top-content">
+				<div class="top-bar">
+					<div class="left-contents">
+						<form th:action="@{/chat}" method="post" th:object="${groupForm}">
+							<input type="text" name="group_id" th:value="${groupForm.group_id}" style="display:none;">
+							<input type="text" name="groupname" th:value="${groupForm.groupname}" style="display:none;">
+							<input type="text" name="user_id" th:value="${groupForm.user_id}" style="display:none;">
+							<input type="submit" value="＜">
+						</form>
+						<div class="page-title">
+							<h2>add new Chat</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main-content">
+				<form th:action="@{/addChat}" method="post" th:object="${chatForm}">
+					<input type="text" name="group_id" th:value="${groupForm.group_id}" style="display:none;">
+					<input type="text" name="groupname" th:value="${groupForm.groupname}" style="display:none;">
+					<input type="text" name="user_id" th:value="${groupForm.user_id}" style="display:none;">
+					<div class="add-form">
+						<div>
+							<label>Chat ID</label>
+							<input type="text" name="chat_id" class="add-text" placeholder="チャットIDを入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<label>Chat Name</label>
+							<input type="text" name="chatname" class="add-text" placeholder="チャット名を入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<label>Comment</label>
+							<input type="text" name="comment" class="add-text" placeholder="コメントを入力する">
+							<div class="text_underline"></div>
+						</div>
+						<div>
+							<input type="submit" value="Add" class="btn-border">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

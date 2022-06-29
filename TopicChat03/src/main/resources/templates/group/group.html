@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/header.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- ユーザーが所属しているグループの一覧を表示するための画面 -->
+<div class="wrapper">
+	<div class="header-container">
+		<div class="top-bar">
+			<div class="left-contents">
+				<h1>Topic Chat</h1>
+			</div>
+			<div class="right-contents">
+				<div class="">
+					<form th:action="@{/group/group}" method="get">
+						<button type="submit">HOME</button>
+					</form>
+				</div>
+				<div class="">
+					<form th:action="@{/contact/contact}" method="get">
+						<button type="submit">CONTACT</button>
+					</form>
+				</div>
+				<div class="">
+					<form role="form" id="logout" th:action="@{/logout}" method="post">
+						<button type="submit">SIGN OUT</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-container">
+		<div class="center-content">
+			<div class="top-content">
+				<div class="top-bar">
+					<div class="left-contents">
+						<div class="page-title">
+							<h2>Group</h2>
+						</div>
+					</div>
+					<div class="right-contents">
+						<form th:action="@{/group/addGroup}" method="get">
+							<input type="submit" value="add new Group" class="btn-border">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="main-content">
+				<div th:each="list:${groupList}">
+					<div class="group">
+						<form th:action="@{/chat}" method="post" th:object="${groupForm}">
+						   	<div class="groupname">
+						   		<p th:text="${list.groupname}"></p>
+						   	</div>
+						   	<div class="group_id">
+						   		<p th:text="${list.group_id}"></p>
+						   	</div>
+							<div class="comment">
+								<span th:text="${list.comment}"></span>
+							</div>
+							<div class="upddatetime">
+								<p th:text="${list.upddatetime}"></p>
+							</div>
+							<input type="text" name="group_id" th:value="${list.group_id}" style="display:none;">
+							<input type="text" name="groupname" th:value="${list.groupname}" style="display:none;">
+							<input type="text" name="user_id" th:value="${list.user_id}" style="display:none;">
+							<input type="submit" value="選択">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
