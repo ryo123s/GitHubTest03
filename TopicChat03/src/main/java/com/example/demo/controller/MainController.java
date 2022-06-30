@@ -20,6 +20,7 @@ public class MainController {
 	public String login() {
 		return "/login";
 	}
+	
 	/**
 	 * 新規登録画面に遷移
 	 * @param signupForm
